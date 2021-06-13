@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<canvas id="myCanvas" width="400" height="200"
+style="border:1px solid #c3c3c3;">
+</canvas>
+
+<script>
+var canvas = document.getElementById("myCanvas");
+var width = canvas.width;
+var height = canvas.height;
+var ctx = canvas.getContext("2d");
+ctx.fillStyle = "#e3125f"
+
+var w = width;
+var r = 30;
+var b1 = w/2-r;
+var b2 = b1 + 2 * r;
+var a = height / 2 - r;
+var h = height;
+var alpha = Math.PI /4;
+
+var p1x = b1 - Math.cos(alpha) *  r;
+var p1y = Math.sin(alpha) * r + a;
+var p2x = b2 + Math.cos(alpha) *  r;
+var p2y = Math.sin(alpha) * r + a;
+var u = (p2x - p1x) / 2
+var p3x = (p1x + p2x) / 2;
+var v = Math.tan(Math.PI / 2 - alpha) * u
+var p3y = v + p1y;
+
+ctx.beginPath();
+ctx.arc(b1, a, r, 0, Math.PI * 2, true);
+ctx.arc(b2, a, r, 0, Math.PI * 2, true);;
+ctx.fill();
+//ctx.fillStyle = "#FF0000"
+ctx.beginPath();
+ctx.moveTo(p1x, p1y);
+ctx.lineTo(b1 + r, a);
+ctx.lineTo(p2x, p2y);
+ctx.lineTo(p3x, p3y);
+ctx.fill();        
+</script>
+
+</body>
+</html>
